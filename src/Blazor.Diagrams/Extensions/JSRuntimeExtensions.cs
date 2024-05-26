@@ -10,7 +10,14 @@ public static class JSRuntimeExtensions
 {
     public static async Task<Rectangle> GetBoundingClientRect(this IJSRuntime jsRuntime, ElementReference element)
     {
-        return await jsRuntime.InvokeAsync<Rectangle>("ZBlazorDiagrams.getBoundingClientRect", element);
+        try
+        {
+            return await jsRuntime.InvokeAsync<Rectangle>("ZBlazorDiagrams.getBoundingClientRect", element);
+        }
+        catch {
+            // Ignore, likely disposed
+        }
+        return Rectangle.Zero;
     }
 
     public static async Task ObserveResizes<T>(this IJSRuntime jsRuntime, ElementReference element,
@@ -28,6 +35,13 @@ public static class JSRuntimeExtensions
 
     public static async Task UnobserveResizes(this IJSRuntime jsRuntime, ElementReference element)
     {
-        await jsRuntime.InvokeVoidAsync("ZBlazorDiagrams.unobserve", element, element.Id);
+        try
+        {
+            await jsRuntime.InvokeVoidAsync("ZBlazorDiagrams.unobserve", element, element.Id);
+        }
+        catch
+        {
+            // Ignore, DotNetObjectReference was likely disposed
+        }
     }
 }

@@ -50,15 +50,6 @@
         <Exec Command="webcompiler -r wwwroot" StandardOutputImportance="high" StandardErrorImportance="high" />
     </Target>
 
-  <PropertyGroup>
-    <TargetsForTfmSpecificBuildOutput>$(TargetsForTfmSpecificBuildOutput);GetBinariesForPackage</TargetsForTfmSpecificBuildOutput>
-  </PropertyGroup>
-
-  <Target Name="GetBinariesForPackage">
-    <ItemGroup>
-      <BuildOutputInPackage Include="$(OutputPath)Blazor.Diagrams.Core.dll;..\..\packages\svgpathproperties\1.1.2\lib\netstandard2.0\SvgPathProperties.dll">
-      </BuildOutputInPackage>
-    </ItemGroup>
-  </Target>
+ 
 
 </Project>

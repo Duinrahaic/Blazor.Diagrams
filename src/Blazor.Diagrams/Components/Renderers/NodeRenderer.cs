@@ -121,7 +121,7 @@ public class NodeRenderer : ComponentBase, IDisposable
         builder.AddAttribute(9, "onmouseleave", EventCallback.Factory.Create<MouseEventArgs>(this, OnMouseLeave));
         builder.AddElementReferenceCapture(10, value => _element = value);
         builder.OpenComponent(11, componentType);
-        builder.AddAttribute(12, "Node", Node);
+        builder.AddAttribute(12, "Nodes", Node);
         builder.CloseComponent();
 
         builder.CloseElement();
